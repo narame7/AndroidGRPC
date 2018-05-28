@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/background2"
+    tools:context=".ClientActivity">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_height="500"
+        app:scale_base_width="400">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#D8F6FF"
+            android:adjustViewBounds="true"
+            app:scale_height="340"
+            app:scale_left="30"
+            app:scale_top="10"
+            app:scale_width="340" />
+
+        <TextView
+            android:id="@+id/resultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00356B"
+            app:scale_height="50"
+            app:scale_left="0"
+            app:scale_top="350"
+            app:scale_width="400"
+            app:scale_textsize="20"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/btn_SelectPicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/select_but"
+            app:scale_height="50"
+            app:scale_left="80"
+            app:scale_top="400"
+            app:scale_width="240"/>
+
+        <Button
+            android:id="@+id/btn_Upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/upload_but"
+            app:scale_height="45"
+            app:scale_left="120"
+            app:scale_top="450"
+            app:scale_width="160"/>
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+</RelativeLayout>
