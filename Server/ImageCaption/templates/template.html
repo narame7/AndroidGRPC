@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+form{ margin:0 auto; width:300px}
+
+h1 {text-align:center;}
+h3 {text-align:center;}
+
+figure, figcaption{
+display:block;
+}
+
+img { max-width:100%; max-height: 100%;
+}
+
+
+
+
+/***Now style the containing div that we gave the id 'polaroid'***/
+#polaroid{
+padding:20px 10px;
+/*setting a width and adding overflow:hidden will clear the floats we're going to apply to figure*/
+width:100%;
+overflow:hidden;
+}
+/***Position the figures containing the images and captions***/
+
+
+#polaroid figure{
+margin:auto;
+padding: 6px 8px 10px 8px; /*size of the frame*/
+/*give the frame's background colour a gradient*/
+background: #eee6d8; /*fallback colour for browsers that don't support gradients*/
+background: -webkit-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+background: -moz-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+background: -o-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+background: -ms-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+background: linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+/*give the Polaroids a small drop shadow*/
+-webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+-moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+}
+
+
+
+#polaroid figure{
+
+width:700px;
+-webkit-transform:rotate(-1deg);
+-moz-transform: rotate(-1deg);
+-o-transform: rotate(-1deg);
+-ms-transform: rotate(-1deg);
+transform: rotate(-1deg);
+-webkit-backface-visibility:hidden; /*prevent rotated text in the caption being jagged in Chrome and Safari*/
+}
+/***Rotate each even numbered image 2 degrees clockwise***/
+#polaroid figure:nth-child(even) { /*see support section below for more info on nth-child*/
+-webkit-transform:rotate(2deg);
+-moz-transform: rotate(2deg);
+-o-transform: rotate(2deg);
+-ms-transform: rotate(2deg);
+transform: rotate(2deg);
+/*because the image is rotated the opposite way, the drop-shadow needs moving to the other side of the image*/
+-webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+-moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+box-shadow: -4px 4px 8px -4px rgba(0, 0, 0, .75);
+}
+
+#polaroid figcaption{
+text-align: center;
+font-family: 'Nanum Pen Script', cursive; /* Reenie Beanie is available through Google Webfonts */
+font-size:1.5em;
+color: #454f40;
+letter-spacing: 0.09em;
+}
+
+figure:before { /*see the support section below to more info on using the :before psuedo element*/
+content: '';
+display: block;
+position: absolute;
+left:5px; /*postion from the left side of the frame (positive value move the tape right, negative moves it left)*/
+top: -15px; /*position from the top of the frame (positive move it above the frame, negative below)*/
+width: 75px; /*width of the tape*/
+height: 25px; /*height of the tape*/
+background-color: rgba(222,220,198,0.7); /*colour of the tape, use rgba to make it slightly transparent*/
+/*rotate the tape 12 degrees anti-clockwise*/
+-webkit-transform: rotate(-12deg);
+-moz-transform: rotate(-12deg);
+-o-transform: rotate(-12deg);
+-ms-transform: rotate(-12deg);
+}
+/**The tape for the even numbered images needs to be rotated the opposite way, as the images are, and positioned on the other side of the frame, I've also changed the width slightly**/
+figure:nth-child(even):before {
+left:150px;
+top: -15px;
+width: 55px;
+height: 25px;
+-webkit-transform: rotate(12deg);
+-moz-transform: rotate(12deg);
+-o-transform: rotate(12deg);
+-ms-transform: rotate(12deg);
+}
+
+
+</style>
+</head>
+<body>
+
+<h1>AIRCKETI Image Captioning Demo</h1>
+
+
+<form action="" method=post enctype=multipart/form-data>
+   <p><input type=file name=file>
+    <input type=submit value=Upload>
+</form>
+
+
+{% if filename %}
+<div id="polaroid">
+<figure>
+<img src="{{url_for('static', filename=filename)}}" alt="" style="width:100%">
+<figcaption>{{caption}}</figcaption>
+</figure>
+</div>
+{% else %}
+<h3>Upload input image using the form above :)</h3>
+{% endif %}
+
+</body>
+</html>
+
