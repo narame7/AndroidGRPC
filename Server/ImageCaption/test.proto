@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "ImageCaptioning";
+option java_package = "io.grpctest.imageCaptioning";
+
+package imageCaptioning;
+
+message Request {
+    bytes imageData = 1;
+    string audio_id = 2;
+}
+
+message Response {
+    bytes audioData = 1;
+    string resultText = 2;
+}
+
+service ImageCaptionService {
+    rpc DataStreaming(stream Request) returns (stream Response) {}
+}
